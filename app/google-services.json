@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "899967693343",
+    "project_id": "storeappunabesp",
+    "storage_bucket": "storeappunabesp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899967693343:android:0e6ccd03e73f054659db2a",
+        "android_client_info": {
+          "package_name": "co.unab.edu.daferile.appfundamentos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-Wkw7AW_I7on3jpd5NTviaICVpoP6gFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
