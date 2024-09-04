@@ -6,6 +6,7 @@ import co.unab.edu.daferile.appfundamentos.core.ui.model.Product
 import co.unab.edu.daferile.appfundamentos.core.data.local.dao.ProductDao
 import co.unab.edu.daferile.appfundamentos.core.data.local.entity.ProductEntity
 import co.unab.edu.daferile.appfundamentos.core.data.network.FirebaseClient
+import co.unab.edu.daferile.appfundamentos.core.data.network.datasource.ProductFirestoreDataSource
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 class HomeRepository @Inject constructor(
     private val productDAO: ProductDao,
-    private val client: FirebaseClient
+    private val dataSource: ProductFirestoreDataSource
 ) {
     suspend fun addProduct(product: Product) {
         productDAO.add(product.toEntity())
@@ -27,15 +28,27 @@ class HomeRepository @Inject constructor(
     }
 
 
-    suspend fun productsListFirebase(): QuerySnapshot? {
-        return client.firestoreDB.collection("products").get().await()
+    val productList: Flow<List<Product>> = productDAO.getAll().map { items ->
+        items.map {
+            it.toProduct()
+        }
+    }
+
+    fun productsListFirebase(): Flow<List<Product>> {
+        return dataSource.getAll()
     }
 
     fun addProductFirebase(product: Product) {
-        val productEntity = product.toEntity()
-        client.firestoreDB.collection("products").document(productEntity.id.toString())
-            .set(productEntity)
+        dataSource.add(product)
     }
+
+    /*
+        fun addProductFirebase(product: Product) {
+            val productEntity = product.toEntity()
+            client.firestoreDB.collection("products").document(productEntity.id.toString())
+                .set(productEntity)
+        }
+     */
 }
 
 fun ProductEntity.toProduct(): Product = Product(

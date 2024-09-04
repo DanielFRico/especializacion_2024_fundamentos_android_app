@@ -9,12 +9,6 @@ import javax.inject.Inject
 class GetProductsListUseCase @Inject constructor(private val homeRepository: HomeRepository) {
     operator fun invoke(): Flow<List<Product>> {
         //return homeRepository.productList
-        return flow {
-            val productList: List<Product> =
-                homeRepository.productsListFirebase()?.documents?.map { it.toObject(Product::class.java)!! }
-                    ?: emptyList()
-            emit(productList)
-        }
-
+        return homeRepository.productsListFirebase()
     }
 }

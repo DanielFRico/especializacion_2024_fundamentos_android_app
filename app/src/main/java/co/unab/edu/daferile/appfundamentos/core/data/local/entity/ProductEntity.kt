@@ -11,4 +11,6 @@ data class ProductEntity(
     var price: Int,
     var description: String,
     var image: String = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMm4n0xDPUo-MkJrZ_5VNhR-bxcnYCPLTbOA&s"
-)
+) {
+    constructor() : this(0, "", 0, "", "")
+}

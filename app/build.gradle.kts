@@ -53,7 +53,8 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.converter.gson)
+    implementation(libs.retrofit)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -94,6 +95,8 @@ dependencies {
     // To use Kotlin annotation processing tool (kapt)
     //noinspection KaptUsageInsteadOfKsp
     kapt(libs.androidx.room.compiler)
+
+
 }
 
 kapt {

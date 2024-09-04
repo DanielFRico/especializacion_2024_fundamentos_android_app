@@ -6,6 +6,7 @@ import javax.inject.Inject
 
 class AddProductUseCase @Inject constructor(private val homeRepository: HomeRepository) {
     suspend operator fun invoke(product: Product) {
-        homeRepository.addProductFirebase(product = product)
+        homeRepository.addProduct(product)
+        homeRepository.addProductFirebase(product)
     }
 }
