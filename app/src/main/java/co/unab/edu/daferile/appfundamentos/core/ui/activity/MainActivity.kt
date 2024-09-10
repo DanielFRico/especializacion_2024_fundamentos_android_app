@@ -46,6 +46,7 @@ import co.unab.edu.daferile.appfundamentos.ui.theme.AppFundamentosTheme
 import co.unab.edu.daferile.appfundamentos.updateproduct.ui.screen.UpdateProductScreen
 import co.unab.edu.daferile.appfundamentos.updateproduct.ui.viewmodel.UpdateProductViewModel
 import co.unab.edu.daferile.appfundamentos.users.screen.UsersScreen
+import co.unab.edu.daferile.appfundamentos.users.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -57,12 +58,13 @@ class MainActivity : ComponentActivity() {
     private val productDetailViewModel: ProductDetailViewModel by viewModels()
     private val createProductViewModel: CreateProductViewModel by viewModels()
     private val updateProductViewModel: UpdateProductViewModel by viewModels()
+    private val usersViewModel: UserViewModel by viewModels()
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Ejemplo de corutinas, que es correr diferente procesos en otros hilos
-        // que so sean el principal, osea el de la UI
+        // que no sean el principal, osea el de la UI
         lifecycleScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
                 Toast.makeText(baseContext, "Coriendo un toast un IO thread", Toast.LENGTH_LONG)
@@ -185,7 +187,7 @@ class MainActivity : ComponentActivity() {
                             ProfileScreen()
                         }
                         composable(Users.route) {
-                            UsersScreen(modifier = Modifier.padding(innerPadding))
+                            UsersScreen(modifier = Modifier.padding(innerPadding), usersViewModel)
                         }
                         composable(CreateProduct.route) {
                             CreateProductScreen(

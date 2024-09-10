@@ -7,4 +7,5 @@ data class UserEntity(
     var email: String,
     var image: String
 ) {
+    constructor(): this("", "", 0, "", "")
 }
