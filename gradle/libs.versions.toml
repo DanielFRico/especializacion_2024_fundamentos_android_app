@@ -2,6 +2,7 @@
 agp = "8.5.0"
 coilCompose = "2.6.0"
 constraintlayoutCompose = "1.0.1"
+converterGson = "2.9.0"
 hiltAndroid = "2.48"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
@@ -53,6 +54,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit2-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 room-compiler = { module = "androidx.room:room-compiler" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
