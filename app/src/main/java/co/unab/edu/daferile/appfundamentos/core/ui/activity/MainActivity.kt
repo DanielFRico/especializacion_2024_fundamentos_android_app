@@ -26,7 +26,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -42,6 +41,7 @@ import co.unab.edu.daferile.appfundamentos.home.ui.viewmodel.HomeViewModel
 import co.unab.edu.daferile.appfundamentos.productdetail.screen.ProductDetailScreen
 import co.unab.edu.daferile.appfundamentos.productdetail.viewmodel.ProductDetailViewModel
 import co.unab.edu.daferile.appfundamentos.profile.screen.ProfileScreen
+import co.unab.edu.daferile.appfundamentos.profile.viewmodel.ProfileViewModel
 import co.unab.edu.daferile.appfundamentos.ui.theme.AppFundamentosTheme
 import co.unab.edu.daferile.appfundamentos.updateproduct.ui.screen.UpdateProductScreen
 import co.unab.edu.daferile.appfundamentos.updateproduct.ui.viewmodel.UpdateProductViewModel
@@ -59,6 +59,7 @@ class MainActivity : ComponentActivity() {
     private val createProductViewModel: CreateProductViewModel by viewModels()
     private val updateProductViewModel: UpdateProductViewModel by viewModels()
     private val usersViewModel: UserViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by viewModels()
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -184,7 +185,7 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable(MyProfile.route) {
-                            ProfileScreen()
+                            ProfileScreen(profileViewModel)
                         }
                         composable(Users.route) {
                             UsersScreen(modifier = Modifier.padding(innerPadding), usersViewModel)

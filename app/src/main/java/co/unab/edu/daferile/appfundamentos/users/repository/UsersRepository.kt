@@ -10,6 +10,10 @@ class UsersRepository @Inject constructor(private val dataSource: UsersFirestore
     fun usersListFirebase(): Flow<List<User>> {
          return dataSource.getAll()
     }
+
+    fun findUserById(email: String): Flow<User> {
+        return  dataSource.getUserById(email)
+    }
 }
 
 fun UserEntity.toUser(): User = User(

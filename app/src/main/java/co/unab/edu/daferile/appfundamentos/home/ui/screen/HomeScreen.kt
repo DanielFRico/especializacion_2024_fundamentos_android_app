@@ -127,8 +127,7 @@ fun ProductItem(
             Text(text = product.description, modifier = Modifier.constrainAs(price) {
                 start.linkTo(image.end)
                 end.linkTo(parent.end)
-                top.linkTo(image.bottom)
-                bottom.linkTo(name.bottom)
+                top.linkTo(name.bottom)
             })
         }
     }

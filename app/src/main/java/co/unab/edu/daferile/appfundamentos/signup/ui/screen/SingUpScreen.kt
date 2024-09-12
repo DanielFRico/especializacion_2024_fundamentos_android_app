@@ -1,5 +1,7 @@
 package co.unab.edu.daferile.appfundamentos.signup.ui.screen
 
+import android.app.Activity
+import android.content.Intent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -21,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
@@ -30,6 +33,7 @@ import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
+import co.unab.edu.daferile.appfundamentos.core.ui.activity.MainActivity
 import co.unab.edu.daferile.appfundamentos.signup.ui.viewmodel.SingUpViewModel
 import coil.compose.AsyncImage
 
@@ -56,8 +60,9 @@ fun SignUpScreen(
     }
 
     var image: String by rememberSaveable {
-        mutableStateOf("https://cdn-icons-png.freepik.com/256/12313/12313717.png?semt=ais_hybrid")
+        mutableStateOf("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFrCyciG9jzzJdm-liLba4ERTeoy5O94A9QA&s")
     }
+    val context = LocalContext.current
     val lifeCycle = LocalLifecycleOwner.current.lifecycle
     val uiState by produceState(initialValue = false, key1 = lifeCycle, key2 = viewModel) {
         lifeCycle.repeatOnLifecycle(state = Lifecycle.State.STARTED) {
@@ -70,7 +75,9 @@ fun SignUpScreen(
     when (uiState) {
         true -> {
             LaunchedEffect(Unit) {
-                navController.popBackStack()
+                val intent = Intent(context, MainActivity::class.java)
+                context.startActivity(intent)
+                (context as Activity).finish()
             }
         }
         false -> {

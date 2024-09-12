@@ -29,4 +29,29 @@ class UsersFirestoreDataSource @Inject constructor(private val firebaseClient: F
             }
         }
     }
+
+    fun getUserById(email: String): Flow<User> {
+        return callbackFlow {
+            val query = firebaseClient.firestoreDB.collection("users")
+            val subscription = query.addSnapshotListener { snapshot, error ->
+                if (error != null) {
+                    close()
+                    return@addSnapshotListener
+                }
+                if (snapshot != null) {
+                    val documents =
+                        snapshot.documents.map { document -> document.toObject(UserEntity::class.java) }
+                    var user = User("","",0,"","")
+                    documents.forEach {
+                        if(it!!.email == email)
+                            user = User(it.id, it.name, it.document, it.email, it.image)
+                    }
+                    trySend(user)
+                }
+            }
+            awaitClose {
+                subscription.remove()
+            }
+        }
+    }
 }
