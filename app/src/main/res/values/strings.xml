@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppFundamentos</string>
+    <string name="app_name">App Fundamentos</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="loginTitle">Iniciar sesion</string>
 </resources>
